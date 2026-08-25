@@ -9,12 +9,14 @@ public class ShowTask {
     private HashMap<Integer, Task> tasks;
     private HashMap<Integer, TaskEpic> epics;
     private HashMap<Integer, TaskSubtask> subtasks;
+    private HistoryManager historyManager;
 
     public ShowTask(CreatTask createTask) {
         this.createTask = createTask;
         this.tasks = createTask.getTasks();
         this.epics = createTask.getEpics();
         this.subtasks = createTask.getSubtasks();
+        this.historyManager = createTask.getHistoryManager();
     }
 
     public void showAllTasks(){
@@ -36,6 +38,7 @@ public class ShowTask {
         }
         for (Task task : tasks.values()) {
             System.out.println(task);
+
         }
     }
 
@@ -87,12 +90,15 @@ public class ShowTask {
 
                 if (task != null) {
                     System.out.println(task);
+                    historyManager.addToHistory(id);
                     break;
                 } else if (epic != null) {
                     System.out.println(epic);
+                    historyManager.addToHistory(id);
                     break;
                 } else if (subtask != null) {
                     System.out.println(subtask);
+                    historyManager.addToHistory(id);
                     break;
                 } else {
                     System.out.println("Задача с ID " + id + " не найдена");

@@ -1,7 +1,4 @@
-import methods.CreatTask;
-import methods.DeleteTask;
-import methods.ShowTask;
-import methods.UpdateTask;
+import methods.*;
 
 import java.util.Scanner;
 
@@ -12,6 +9,7 @@ public class InMemoryTaskManager implements TaskManager {
     private DeleteTask deleteTask;
     private UpdateTask updateTask;
     private Scanner scanner;
+    private HistoryManager historyManager;
     private boolean isRunning;
 
     public InMemoryTaskManager() {
@@ -19,6 +17,7 @@ public class InMemoryTaskManager implements TaskManager {
         this.showTask = new ShowTask(creatTask);
         this.deleteTask = new DeleteTask(creatTask);
         this.updateTask = new UpdateTask(creatTask);
+        this.historyManager = new HistoryManager(creatTask);
         this.scanner = new Scanner(System.in);
         this.isRunning = true;
     }
@@ -55,7 +54,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void showHistory() {
-        System.out.println("Здесь будет история");
+        historyManager.showHistory();
     }
 
     @Override
