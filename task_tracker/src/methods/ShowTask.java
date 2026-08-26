@@ -39,7 +39,6 @@ public class ShowTask {
         }
         for (Task task : tasks.values()) {
             System.out.println(task);
-
         }
     }
 
@@ -91,15 +90,15 @@ public class ShowTask {
 
                 if (task != null) {
                     System.out.println(task);
-                    historyManager.addToHistory(task.getTaskID());
+                    historyManager.addToHistory(task);
                     break;
                 } else if (epic != null) {
                     System.out.println(epic);
-                    historyManager.addToHistory(id);
+                    historyManager.addToHistory(task);
                     break;
                 } else if (subtask != null) {
                     System.out.println(subtask);
-                    historyManager.addToHistory(id);
+                    historyManager.addToHistory(task);
                     break;
                 } else {
                     System.out.println("Задача с ID " + id + " не найдена");

@@ -14,8 +14,7 @@ public class CreatTask {
     private String instanceId;
 
     public CreatTask() {
-        this.historyManager = new HistoryManager(this); // Инициализируем
-
+        this.historyManager = new HistoryManager(this);
     }
 
     public HashMap<Integer, Task> getTasks() {

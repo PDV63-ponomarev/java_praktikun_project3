@@ -62,7 +62,7 @@ public class InMemoryTaskManager implements TaskManager {
         System.out.println("Выход");
         isRunning = false;
     }
-    // Метод для запуска консольного интерфейса
+
     public void start() {
         while (isRunning) {
             printMenu();
@@ -120,7 +120,6 @@ public class InMemoryTaskManager implements TaskManager {
         }
     }
 
-    // Точка входа в программу
     public static void main(String[] args) {
         InMemoryTaskManager manager = new InMemoryTaskManager();
         manager.start();

@@ -37,7 +37,6 @@ public class DeleteTask {
                         return;
                     case 2:
                         return;
-
                     default:
                         System.out.println("Введите 1 или 2");
                 }

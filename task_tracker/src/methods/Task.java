@@ -10,7 +10,6 @@ public class Task {
     protected  int taskID;
 
     public Task(String taskName, String taskDescription, String taskStatus, int taskID) {
-
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.taskStatus = taskStatus;
@@ -141,8 +140,6 @@ class TaskSubtask extends Task{
                 taskStatus,
                 taskID,
                 epicName,
-                epicId
-        );
+                epicId);
     }
-
 }

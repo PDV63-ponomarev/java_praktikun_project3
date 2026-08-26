@@ -1,6 +1,5 @@
 package methods;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -28,7 +27,7 @@ public class UpdateTask {
 
         int id = checkIDTask();
         if (id == -1) {
-            return; //прерывание
+            return;
         }
 
         System.out.println("Что хотите обновить: \n" +
