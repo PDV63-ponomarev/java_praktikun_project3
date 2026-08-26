@@ -17,7 +17,7 @@ public class InMemoryTaskManager implements TaskManager {
         this.showTask = new ShowTask(creatTask);
         this.deleteTask = new DeleteTask(creatTask);
         this.updateTask = new UpdateTask(creatTask);
-        this.historyManager = new HistoryManager(creatTask);
+        this.historyManager = creatTask.getHistoryManager();
         this.scanner = new Scanner(System.in);
         this.isRunning = true;
     }

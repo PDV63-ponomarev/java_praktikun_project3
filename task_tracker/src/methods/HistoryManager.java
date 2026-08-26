@@ -9,6 +9,8 @@ public class HistoryManager {
     private List<Integer> historyIds = new LinkedList<>();
     private CreatTask createTask;
 
+    private String instanceId; // Для отладки
+
     public HistoryManager(CreatTask createTask) {
         this.createTask = createTask;
     }
@@ -30,6 +32,7 @@ public class HistoryManager {
     }
 
     public void showHistory() {
+
         if (historyIds.isEmpty()) {
             System.out.println("История просмотров пуста");
             return;
@@ -37,10 +40,12 @@ public class HistoryManager {
 
         System.out.println("История просмотров (последние " + historyIds.size() + " из " + MAX_HISTORY_SIZE + "):");
 
-        for (int i = 0; i <= MAX_HISTORY_SIZE; i++) {
+        for (int i = historyIds.size() - 1; i >= 0; i--) {
             int id = historyIds.get(i);
             String taskInfo = getTaskInfo(id);
-            System.out.printf("%s) %n", i + 1, taskInfo);
+
+            System.out.println((historyIds.size() - i) + ") " + taskInfo);
+
         }
     }
 

@@ -11,13 +11,17 @@ public class CreatTask {
     private HashMap<Integer, TaskEpic> epics = new HashMap<>();
     private HashMap<Integer, TaskSubtask> subtasks = new HashMap<>();
     private HistoryManager historyManager;
+    private String instanceId;
+
+    public CreatTask() {
+        this.historyManager = new HistoryManager(this); // Инициализируем
+
+    }
+
     public HashMap<Integer, Task> getTasks() {
         return tasks;
     }
 
-    public CreatTask() {
-        this.historyManager = new HistoryManager(this); // Инициализируем
-    }
     public HashMap<Integer, TaskEpic> getEpics() {
         return epics;
     }
@@ -28,6 +32,10 @@ public class CreatTask {
 
     public HistoryManager getHistoryManager() {
         return historyManager;
+    }
+
+    public String getInstanceId() {
+        return instanceId;
     }
 
     public void creatingNewTask() {

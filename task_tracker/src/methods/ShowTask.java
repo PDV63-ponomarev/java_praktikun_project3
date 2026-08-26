@@ -17,6 +17,7 @@ public class ShowTask {
         this.epics = createTask.getEpics();
         this.subtasks = createTask.getSubtasks();
         this.historyManager = createTask.getHistoryManager();
+
     }
 
     public void showAllTasks(){
@@ -90,7 +91,7 @@ public class ShowTask {
 
                 if (task != null) {
                     System.out.println(task);
-                    historyManager.addToHistory(id);
+                    historyManager.addToHistory(task.getTaskID());
                     break;
                 } else if (epic != null) {
                     System.out.println(epic);
