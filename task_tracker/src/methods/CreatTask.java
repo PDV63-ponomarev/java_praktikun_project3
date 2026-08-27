@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+
 public class CreatTask {
     private Scanner scanner = new Scanner(System.in);
     private int nextId = 1;
@@ -138,10 +139,10 @@ public class CreatTask {
     class TaskInputData {
         private String name;
         private String description;
-        private String status;
+        private EnumStatus status;
         private int id;
 
-        public TaskInputData(String name, String description, String status, int id) {
+        public TaskInputData(String name, String description, EnumStatus status, int id) {
             this.name = name;
             this.description = description;
             this.status = status;
@@ -150,20 +151,8 @@ public class CreatTask {
 
         public String getName() { return name; }
         public String getDescription() { return description; }
-        public String getStatus() { return status; }
+        public EnumStatus getStatus() { return status; }
         public int getId() { return id; }
-    }
-
-    private TaskInputData createTaskData() {
-        System.out.print("Введите название задачи: ");
-        String name = safeNextLine();
-
-        System.out.print("Введите описание задачи: ");
-        String description = safeNextLine();
-
-        String status = getStatusString();
-
-        return new TaskInputData(name, description, status, nextId++);
     }
 
     private String safeNextLine() {
@@ -180,16 +169,29 @@ public class CreatTask {
         return line;
     }
 
-    private String getStatusString() {
+    private TaskInputData createTaskData() {
+        System.out.print("Введите название задачи: ");
+        String name = safeNextLine();
+
+        System.out.print("Введите описание задачи: ");
+        String description = safeNextLine();
+
+        EnumStatus status = getStatusEnum();
+
+        return new TaskInputData(name, description, status, nextId++);
+    }
+
+
+    private EnumStatus getStatusEnum() {
         while (true) {
             try {
                 System.out.print("Введите статус (1 - Новая / 2 - В процессе / 3 - Выполнена): ");
                 int statusInt = Integer.parseInt(safeNextLine());
 
                 switch (statusInt) {
-                    case 1: return "NEW";
-                    case 2: return "IN_PROGRESS";
-                    case 3: return "DONE";
+                    case 1: return EnumStatus.NEW;
+                    case 2: return EnumStatus.IN_PROGRESS;
+                    case 3: return EnumStatus.DONE;
                     default:
                         System.out.println("Неверный статус! Введите 1, 2 или 3.");
                 }

@@ -3,16 +3,22 @@ package methods;
 import java.util.ArrayList;
 import java.util.List;
 
+enum EnumStatus{
+    NEW,
+    IN_PROGRESS,
+    DONE
+}
+
 public class Task {
     protected  String taskName;
     protected  String taskDescription;
-    protected  String taskStatus;
+    protected  EnumStatus taskStatus;
     protected  int taskID;
 
-    public Task(String taskName, String taskDescription, String taskStatus, int taskID) {
+    public Task(String taskName, String taskDescription, EnumStatus status, int taskID) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
-        this.taskStatus = taskStatus;
+        this.taskStatus = status;
         this.taskID = taskID;
     }
 
@@ -24,7 +30,7 @@ public class Task {
         return taskDescription;
     }
 
-    public String getTaskStatus() {
+    public EnumStatus getTaskStatus() {
         return taskStatus;
     }
 
@@ -40,7 +46,7 @@ public class Task {
         this.taskDescription = taskDescription;
     }
 
-    public void setTaskStatus(String taskStatus) {
+    public void setTaskStatus(EnumStatus taskStatus) {
         this.taskStatus = taskStatus;
     }
 
@@ -57,11 +63,10 @@ public class Task {
 class TaskEpic extends Task{
     private List<Integer> subtaskIds;
 
-    public TaskEpic(String taskName, String taskDescription, String taskStatus, int taskID) {
-        super(taskName, taskDescription, taskStatus, taskID);
+    public TaskEpic(String taskName, String taskDescription, EnumStatus status, int taskID) {
+        super(taskName, taskDescription, status, taskID);
         this.subtaskIds = new ArrayList<>();
     }
-
 
     public List<Integer> getSubtaskIds() {
         return subtaskIds;
@@ -77,7 +82,7 @@ class TaskEpic extends Task{
 
     public void updateStatus(List<TaskSubtask> subtasks) {
         if (subtaskIds.isEmpty()) {
-            this.taskStatus = "NEW";
+            this.taskStatus = EnumStatus.NEW;
             return;
         }
 
@@ -87,10 +92,10 @@ class TaskEpic extends Task{
         for (int id : subtaskIds) {
             for (TaskSubtask subtask : subtasks) {
                 if (subtask.getTaskID() == id) {
-                    if (!subtask.getTaskStatus().equals("NEW")) {
+                    if (!subtask.getTaskStatus().equals(EnumStatus.NEW)) {
                         allNew = false;
                     }
-                    if (!subtask.getTaskStatus().equals("DONE")) {
+                    if (!subtask.getTaskStatus().equals(EnumStatus.DONE)) {
                         allDone = false;
                     }
                     break;
@@ -99,13 +104,14 @@ class TaskEpic extends Task{
         }
 
         if (allNew) {
-            this.taskStatus = "NEW";
+            this.taskStatus = EnumStatus.NEW;
         } else if (allDone) {
-            this.taskStatus = "DONE";
+            this.taskStatus = EnumStatus.DONE;
         } else {
-            this.taskStatus = "IN_PROGRESS";
+            this.taskStatus = EnumStatus.IN_PROGRESS;
         }
     }
+
     @Override
     public String toString() {
         return String.format("Задача {Название: %s; Описание: %s; Статус: %s; ID: %d; Подзадачи: %s}",
@@ -117,13 +123,12 @@ class TaskEpic extends Task{
         );
     }
 }
-
 class TaskSubtask extends Task{
     private int epicId;
     private String epicName;
 
-    public TaskSubtask(String taskName, String taskDescription, String taskStatus, int taskID, int epicId, String epicName) {
-        super(taskName, taskDescription, taskStatus, taskID);
+    public TaskSubtask(String taskName, String taskDescription, EnumStatus status, int taskID, int epicId, String epicName) {
+        super(taskName, taskDescription, status, taskID);
         this.epicId = epicId;
         this.epicName = epicName;
     }

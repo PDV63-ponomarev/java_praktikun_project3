@@ -71,8 +71,6 @@ public class HistoryManager {
         return null; // Задача не найдена
     }
 
-
-
     private String getTaskInfo(Task task) {
         if (task instanceof TaskEpic) {
             TaskEpic epic = (TaskEpic) task;
