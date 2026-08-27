@@ -156,7 +156,7 @@ public class UpdateTask {
                 int userInput = Integer.parseInt(scanner.nextLine());
                 switch (userInput) {
                     case 1:
-                        status = "NEW";
+                        status = EnumStatus.NEW;
                         validInput = true;
                         break;
                     case 2:
