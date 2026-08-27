@@ -148,7 +148,7 @@ public class UpdateTask {
                 "2 - Выполняется (IN_PROGRESS) \n" +
                 "3 - Выполнена (DONE)");
 
-        String status = "";
+        EnumStatus status;
         boolean validInput = false;
 
         while (!validInput) {
@@ -160,11 +160,11 @@ public class UpdateTask {
                         validInput = true;
                         break;
                     case 2:
-                        status = "IN_PROGRESS";
+                        status = EnumStatus.IN_PROGRESS;
                         validInput = true;
                         break;
                     case 3:
-                        status = "DONE";
+                        status = EnumStatus.DONE;
                         validInput = true;
                         break;
                     default:
