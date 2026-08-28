@@ -1,5 +1,6 @@
 import methods.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InMemoryTaskManager implements TaskManager {
@@ -54,7 +55,17 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void showHistory() {
-        historyManager.showHistory();
+        List<Task> history = historyManager.getHistory();
+        if (history.isEmpty()) {
+            System.out.println("История просмотров пуста");
+            return;
+        }
+
+        System.out.println("История просмотров:");
+        int counter = 1;
+        for (Task task : history) {
+            System.out.println(counter++ + ") " + task);
+        }
     }
 
     @Override

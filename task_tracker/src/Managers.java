@@ -1,3 +1,5 @@
+import methods.HistoryManager;
+import methods.InMemoryHistoryManager;
 
 public class Managers {
 
@@ -6,8 +8,11 @@ public class Managers {
         // Пустой приватный конструктор
     }
 
-    // Единственный публичный метод - возвращает реализацию TaskManager
     public static TaskManager getDefault() {
         return new InMemoryTaskManager();
+    }
+
+    public static HistoryManager getDefaultHistoryManager() {
+        return new InMemoryHistoryManager();
     }
 }

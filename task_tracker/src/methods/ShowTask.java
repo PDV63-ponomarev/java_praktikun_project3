@@ -17,7 +17,6 @@ public class ShowTask {
         this.epics = createTask.getEpics();
         this.subtasks = createTask.getSubtasks();
         this.historyManager = createTask.getHistoryManager();
-
     }
 
     public void showAllTasks(){
@@ -90,15 +89,15 @@ public class ShowTask {
 
                 if (task != null) {
                     System.out.println(task);
-                    historyManager.addToHistory(task);
+                    historyManager.add(task);
                     break;
                 } else if (epic != null) {
                     System.out.println(epic);
-                    historyManager.addToHistory(task);
+                    historyManager.add(epic);
                     break;
                 } else if (subtask != null) {
                     System.out.println(subtask);
-                    historyManager.addToHistory(task);
+                    historyManager.add(subtask);
                     break;
                 } else {
                     System.out.println("Задача с ID " + id + " не найдена");
