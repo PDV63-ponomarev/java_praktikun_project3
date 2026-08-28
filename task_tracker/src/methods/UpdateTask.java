@@ -1,6 +1,8 @@
 package methods;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UpdateTask {
@@ -56,7 +58,7 @@ public class UpdateTask {
                         System.out.println("Обновление отменено");
                         return;
                 }
-            } catch (java.util.InputMismatchException e) {
+            } catch (InputMismatchException e) {
                     System.out.println("Ошибка ввода: введите от 1 до 4");
                     scanner.nextLine();
                 }
@@ -88,7 +90,7 @@ public class UpdateTask {
                 return -1;
             }
 
-        } catch (java.util.InputMismatchException e) {
+        } catch (InputMismatchException e) {
             System.out.println("Ошибка: нужно ввести число");
             return -1;
         }
@@ -148,7 +150,7 @@ public class UpdateTask {
                 "2 - Выполняется (IN_PROGRESS) \n" +
                 "3 - Выполнена (DONE)");
 
-        EnumStatus status;
+        EnumStatus status = null;
         boolean validInput = false;
 
         while (!validInput) {
@@ -170,7 +172,7 @@ public class UpdateTask {
                     default:
                         System.out.println("Неверный выбор. Введите 1, 2 или 3:");
                 }
-            } catch (java.util.InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Ошибка ввода: выберите 1, 2, 3");
                 scanner.nextLine();
             }
@@ -183,6 +185,9 @@ public class UpdateTask {
         } else if (subtasks.containsKey(id)) {
             TaskSubtask subtask = subtasks.get(id);
             subtask.setTaskStatus(status);
+            
+            TaskEpic epic = epics.get(subtask.getEpicId());
+            epic.updateStatus(new ArrayList<>(subtasks.values()));
             System.out.println("Статус задачи обновлен на: " + status);
         } else {
             System.out.println("Задача с ID " + id + " не найдена");
